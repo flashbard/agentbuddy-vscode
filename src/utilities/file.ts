@@ -15,6 +15,7 @@ async function showSaveFileDialog(text: string) {
     const filePath = result.fsPath;
     fs.writeFileSync(filePath, text);
     console.log(`Selected file path: ${filePath}`);
+    return filePath;
   } else {
     console.log("Save dialog canceled.");
   }

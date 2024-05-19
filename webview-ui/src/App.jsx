@@ -52,7 +52,7 @@ export default function App() {
           <Panel className="space-x-4" position="top-right">
             <VSCodeButton onClick={store.addAgent}>Add Agent</VSCodeButton>
             <VSCodeButton onClick={store.addTask}>Add Task</VSCodeButton>
-            <VSCodeButton onClick={exportFlow}>Save Workflow</VSCodeButton>
+            <VSCodeButton onClick={exportFlow}>Run Workflow</VSCodeButton>
           </Panel>
           <Background />
           <MiniMap />

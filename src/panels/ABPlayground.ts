@@ -144,7 +144,10 @@ export class ABPlayground {
 
         switch (command) {
           case "exportFlow":
-            await showSaveFileDialog(text);
+            const filePath = await showSaveFileDialog(text);
+            const terminal = window.createTerminal();
+            terminal.show();
+            terminal.sendText(`python ${filePath}`);
             return;
         }
       },

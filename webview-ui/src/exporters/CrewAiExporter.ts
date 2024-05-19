@@ -41,14 +41,17 @@ export default class CrewAiExporter implements BaseExporter {
       "import os",
       "from crewai import Agent, Task, Crew",
       "from langchain_openai import ChatOpenAI",
+      "from dotenv import load_dotenv",
+      "",
+      "load_dotenv()",
       "",
     ].join("\n");
   }
 
   createLlmCredential(): string {
     return [
-      `# Make sure to replace this with your OpenAI API key`,
-      `os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"`,
+      `# Make sure to store this in a dotenv file, or replace this with your OpenAI API key`,
+      `# os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"`,
       ``,
     ].join("\n");
   }
