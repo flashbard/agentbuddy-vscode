@@ -48,11 +48,11 @@ export default class CrewAiExporter implements BaseExporter {
     const agentVarName = `agent_${index}`;
     const code = [
       `${agentVarName} = Agent(`,
-      `    role="${agent.role}`,
-      `    goal="${agent.goal}`,
-      `    verbose=True`,
-      `    llm="ChatOpenAI(model_name="${agent.llm}", temperature=0.1)`,
-      `    allowDelegation=${agent.allowDelegation}`,
+      `    role="${agent.role}",`,
+      `    goal="${agent.goal}",`,
+      `    verbose=True,`,
+      `    llm="ChatOpenAI(model_name="${agent.llm}", temperature=0.1)",`,
+      `    allowDelegation=${agent.allowDelegation},`,
       `)`,
     ].join("\n");
     this.agentsToVars.push({ id: agent.id, var: agentVarName });
@@ -71,9 +71,9 @@ export default class CrewAiExporter implements BaseExporter {
     }
     const code = [
       `${taskVarName} = Task(`,
-      `    description="${task.description}"`,
-      `    expected_output="${task.outcome}"`,
-      `    agent=${agentVarName}`,
+      `    description="${task.description}",`,
+      `    expected_output="${task.outcome}",`,
+      `    agent=${agentVarName},`,
       `)`,
     ].join("\n");
     this.tasksToVars.push({ id: task.id, var: taskVarName });
@@ -83,11 +83,16 @@ export default class CrewAiExporter implements BaseExporter {
   createCrew(): string {
     return [
       `crew = Crew(`,
-      `    agents=[${this.agentsToVars.map((a) => a.var)}]`,
-      `    tasks=[${this.tasksToVars.map((t) => t.var)}]`,
-      `    verbose=2`,
+      `    agents=[${this.agentsToVars.map((a) => a.var)}],`,
+      `    tasks=[${this.tasksToVars.map((t) => t.var)}],`,
+      `    verbose=2,`,
+      `    share_crew=False,`,
       `)`,
     ].join("\n");
+  }
+
+  createCrewKick(): string {
+    return [`crew.kickoff()`].join("\n");
   }
 
   createManyAgents(): string {
@@ -168,7 +173,6 @@ export default class CrewAiExporter implements BaseExporter {
 
       // Target will never be a Task
       let target: any = undefined;
-      let targetType = "agent";
       if (edge.targetHandle) {
         target = this.getAgentById(edge.target);
       }

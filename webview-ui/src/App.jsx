@@ -20,9 +20,7 @@ const selector = (store) => ({
   addEdge: store.addEdge,
   addAgent: () => store.createNode("agent"),
   addTask: () => store.createNode("task"),
-  exportFlow: () => {
-    new CrewAiExporter(store.exportFlow()).export();
-  },
+  exportFlow: () => new CrewAiExporter(store.exportFlow()).export(),
 });
 
 const nodeTypes = {
