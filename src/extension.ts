@@ -1,5 +1,5 @@
 import { commands, ExtensionContext } from "vscode";
-import { ABPlayground } from "./panels/AgentBuddyPlayground";
+import { ABPlayground } from "./panels/ABPlayground";
 
 export function activate(context: ExtensionContext) {
   const agentBuddyPlaygroundCommand = commands.registerCommand("agentbuddy.playground", () => {
