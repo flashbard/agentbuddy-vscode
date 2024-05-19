@@ -45,12 +45,12 @@ export default function Agent({ id, data }) {
       </label>
 
       {/* Connections to other agents*/}
-      <Handle id="in" className="w-2 h-2" type="target" position="left" />
-      <Handle id="out" className="w-2 h-2" type="source" position="right" />
+      <Handle id="agentInLeft" className="w-2 h-2" type="target" position="left" />
+      <Handle id="agentOutRight" className="w-2 h-2" type="source" position="right" />
 
       {/* Connections to tools and tasks */}
-      <Handle id="tool" className="w-2 h-2" type="target" position="top" />
-      <Handle id="task" className="w-2 h-2" type="target" position="bottom" />
+      <Handle id="agentInTop" className="w-2 h-2" type="target" position="top" />
+      <Handle id="agentInBottom" className="w-2 h-2" type="source" position="bottom" />
     </div>
   );
 };

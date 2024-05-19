@@ -34,7 +34,7 @@ export default function Task({ id, data }) {
         />
       </label>
 
-      <Handle className="w-2 h-2" type="source" position="top" />
+      <Handle id="taskOut" className="w-2 h-2" type="source" position="bottom" />
     </div>
   );
 }

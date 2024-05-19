@@ -27,7 +27,7 @@ const selector = (store) => ({
 
 const nodeTypes = {
   agent: Agent,
-  task: Task
+  task: Task,
 };
 
 export default function App() {
