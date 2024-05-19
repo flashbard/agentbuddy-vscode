@@ -7,6 +7,7 @@ type Agent = {
   id: string;
   role: string;
   goal: string;
+  backstory: string;
   llm: string;
   allowDelegation: "True" | "False";
 };
@@ -62,6 +63,7 @@ export default class CrewAiExporter implements BaseExporter {
       `${agentVarName} = Agent(`,
       `    role="${agent.role}",`,
       `    goal="${agent.goal}",`,
+      `    backstory="${agent.backstory}",`,
       `    verbose=True,`,
       `    llm=ChatOpenAI(model_name="${agent.llm}", temperature=0.1),`,
       `    allowDelegation=${agent.allowDelegation},`,
@@ -141,6 +143,7 @@ export default class CrewAiExporter implements BaseExporter {
           id: element.id,
           role: element.data.role,
           goal: element.data.goal,
+          backstory: element.data.backstory,
           llm: element.data.llm,
           allowDelegation: "False",
         });

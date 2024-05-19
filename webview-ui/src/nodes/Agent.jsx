@@ -6,11 +6,12 @@ import { useStore } from '../store';
 const selector = (id) => (store) => ({
   setRole: (e) => store.updateNode(id, { role: e.target.value }),
   setGoal: (e) => store.updateNode(id, { goal: e.target.value }),
+  setBackstory: (e) => store.updateNode(id, { backstory: e.target.value }),
   setLlm: (e) => store.updateNode(id, { llm: e.target.value })
 });
 
 export default function Agent({ id, data }) {
-  const { setRole, setGoal, setLlm } = useStore(selector(id), shallow);
+  const { setRole, setGoal, setBackstory, setLlm } = useStore(selector(id), shallow);
 
   return (
     <div className="rounded-md bg-white shadow-xl">
@@ -32,6 +33,14 @@ export default function Agent({ id, data }) {
           className={"nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"}
           value={data.goal}
           onChange={setGoal} />
+      </label>
+
+      <label className="flex flex-col px-2 pt-1 pb-4">
+        <span className="text-xs font-bold mb-2">Backstory</span>
+        <textarea
+          className={"nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"}
+          value={data.backstory}
+          onChange={setBackstory} />
       </label>
 
       <hr className="border-gray-200 mx-2" />
