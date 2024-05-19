@@ -1,7 +1,8 @@
 {
   "name": "agentbuddy-vscode",
   "displayName": "AgentBuddy",
-  "description": "<TO ADD>",
+  "description": "Your friendly neighbourhood agentic workflow builder!",
+  "repository": {"url": "https://github.com/flashbard/agentbuddy-vscode"},
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
