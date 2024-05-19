@@ -28,7 +28,7 @@ export default function Agent({ id, data }) {
       <label className="flex flex-col px-2 pt-1 pb-4">
         <span className="text-xs font-bold mb-2">Goal</span>
         <textarea
-          className={`nodrag $"border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"`}
+          className={"nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"}
           type="text"
           value={data.goal}
           onChange={setGoal} />
@@ -38,7 +38,7 @@ export default function Agent({ id, data }) {
 
       <label className="flex flex-col px-2 pt-1 pb-4">
         <p className="text-xs font-bold mb-2">LLM</p>
-        <select className={`nodrag $"text-xs"`} value={data.llm} onChange={setLlm}>
+        <select className={"nodrag text-xs"} value={data.llm} onChange={setLlm}>
           <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
           <option value="gpt-4">GPT-4</option>
         </select>
