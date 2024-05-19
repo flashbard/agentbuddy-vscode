@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactFlow, { Background, MiniMap, Panel, Controls } from 'reactflow';
+import ReactFlow, { Background, MiniMap, Panel, Controls, ReactFlowProvider } from 'reactflow';
 import { shallow } from 'zustand/shallow';
-import { tw } from 'twind';
 
 import { useStore } from './store';
 import Agent from './nodes/Agent';
@@ -9,6 +8,7 @@ import Agent from './nodes/Agent';
 import { vscode } from "./utilities/vscode";
 import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
 import "./App.css";
+import"./index.css";
 
 const selector = (store) => ({
   nodes: store.nodes,
@@ -35,29 +35,26 @@ export default function App() {
   }
 
   return (
-    <ReactFlow
-      nodes={store.nodes}
-      nodeTypes={nodeTypes}
-      edges={store.edges}
-      onNodesChange={store.onNodesChange}
-      onEdgesChange={store.onEdgesChange}
-      onConnect={store.addEdge}
-    >
-      <Panel className={tw('space-x-4')} position="top-right">
-        <button className={tw('px-2 py-1 rounded bg-white shadow')} onClick={store.addAgent}>
-          ➕
-        </button>
-        <button className={tw('px-2 py-1 rounded bg-white shadow')}>
-          ▶️
-        </button>
-        <button className={tw('px-2 py-1 rounded bg-white shadow')} onClick={store.exportFlow}>
-          💾
-        </button>
-        <VSCodeButton onClick={handleHowdyClick}>Howdy!</VSCodeButton>
-      </Panel>
-      <Background />
-      <MiniMap />
-      <Controls />
-    </ReactFlow>
+    <div className="flow-container">
+      <ReactFlowProvider>
+        <ReactFlow
+          nodes={store.nodes}
+          nodeTypes={nodeTypes}
+          edges={store.edges}
+          onNodesChange={store.onNodesChange}
+          onEdgesChange={store.onEdgesChange}
+          onConnect={store.addEdge}
+          fitView
+        >
+          <Panel className="space-x-4" position="top-right">
+            <VSCodeButton onClick={store.addAgent}>Add Agent</VSCodeButton>
+            <VSCodeButton onClick={store.exportFlow}>Save Workflow</VSCodeButton>
+          </Panel>
+          <Background />
+          <MiniMap />
+          <Controls />
+        </ReactFlow>
+      </ReactFlowProvider>
+    </div>
   );
 }

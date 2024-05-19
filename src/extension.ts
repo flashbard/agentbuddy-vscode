@@ -1,12 +1,10 @@
 import { commands, ExtensionContext } from "vscode";
-import { HelloWorldPanel } from "./panels/HelloWorldPanel";
+import { ABPlayground } from "./panels/ABPlayground";
 
 export function activate(context: ExtensionContext) {
-  // Create the show hello world command
   const showHelloWorldCommand = commands.registerCommand("agentbuddy.playground", () => {
-    HelloWorldPanel.render(context.extensionUri);
+    ABPlayground.render(context.extensionUri);
   });
 
-  // Add command to the extension context
   context.subscriptions.push(showHelloWorldCommand);
 }
