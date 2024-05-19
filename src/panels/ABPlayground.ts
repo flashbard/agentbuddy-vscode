@@ -139,7 +139,7 @@ export class ABPlayground {
         const text = message.text;
 
         switch (command) {
-          case "hello":
+          case "exportFlow":
             // Code that should run in response to the hello message command
             window.showInformationMessage(text);
             return;

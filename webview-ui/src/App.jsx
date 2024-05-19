@@ -17,7 +17,7 @@ const selector = (store) => ({
   onEdgesChange: store.onEdgesChange,
   addEdge: store.addEdge,
   addAgent: () => store.createNode('agent'),
-  exportFlow: () => console.log(store.exportFlow())
+  exportFlow: () => store.exportFlow()
 });
 
 const nodeTypes = {
@@ -27,10 +27,10 @@ const nodeTypes = {
 export default function App() {
   const store = useStore(selector, shallow);
 
-  function handleHowdyClick() {
+  function exportFlow() {
     vscode.postMessage({
-      command: "hello",
-      text: "Hey there partner! 🤠",
+      command: "exportFlow",
+      text: JSON.stringify(store.exportFlow()),
     });
   }
 
@@ -48,7 +48,7 @@ export default function App() {
         >
           <Panel className="space-x-4" position="top-right">
             <VSCodeButton onClick={store.addAgent}>Add Agent</VSCodeButton>
-            <VSCodeButton onClick={store.exportFlow}>Save Workflow</VSCodeButton>
+            <VSCodeButton onClick={exportFlow}>Save Workflow</VSCodeButton>
           </Panel>
           <Background />
           <MiniMap />
