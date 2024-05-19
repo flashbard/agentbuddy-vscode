@@ -51,7 +51,7 @@ export class ABPlayground {
       // If a webview panel does not already exist create and show a new one
       const panel = window.createWebviewPanel(
         // Panel view type
-        "showHelloWorld",
+        "agentBuddyPlayground",
         // Panel title
         "AgentBuddy Playground",
         // The editor column the panel should be displayed in

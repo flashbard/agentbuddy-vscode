@@ -9,8 +9,8 @@ import Task from "./nodes/Task";
 
 import { vscode } from "./utilities/vscode";
 import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
-import "./App.css";
 import "./index.css";
+import "./App.css";
 
 const selector = (store) => ({
   nodes: store.nodes,
@@ -21,7 +21,7 @@ const selector = (store) => ({
   addAgent: () => store.createNode("agent"),
   addTask: () => store.createNode("task"),
   exportFlow: () => {
-    console.log(new CrewAiExporter(store.exportFlow()).export());
+    new CrewAiExporter(store.exportFlow()).export();
   },
 });
 
