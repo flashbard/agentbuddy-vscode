@@ -39,8 +39,17 @@ export default class CrewAiExporter implements BaseExporter {
   createImports(): string {
     return [
       "import os",
-      "from crewai import Agent, Task, Crew, Process",
+      "from crewai import Agent, Task, Crew",
       "from langchain_openai import ChatOpenAI",
+      "",
+    ].join("\n");
+  }
+
+  createLlmCredential(): string {
+    return [
+      `# Make sure to replace this with your OpenAI API key`,
+      `os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"`,
+      ``,
     ].join("\n");
   }
 
@@ -51,9 +60,10 @@ export default class CrewAiExporter implements BaseExporter {
       `    role="${agent.role}",`,
       `    goal="${agent.goal}",`,
       `    verbose=True,`,
-      `    llm="ChatOpenAI(model_name="${agent.llm}", temperature=0.1)",`,
+      `    llm=ChatOpenAI(model_name="${agent.llm}", temperature=0.1),`,
       `    allowDelegation=${agent.allowDelegation},`,
       `)`,
+      ``,
     ].join("\n");
     this.agentsToVars.push({ id: agent.id, var: agentVarName });
     return code;
@@ -75,6 +85,7 @@ export default class CrewAiExporter implements BaseExporter {
       `    expected_output="${task.outcome}",`,
       `    agent=${agentVarName},`,
       `)`,
+      ``,
     ].join("\n");
     this.tasksToVars.push({ id: task.id, var: taskVarName });
     return code;
@@ -88,11 +99,14 @@ export default class CrewAiExporter implements BaseExporter {
       `    verbose=2,`,
       `    share_crew=False,`,
       `)`,
+      ``,
     ].join("\n");
   }
 
-  createCrewKick(): string {
-    return [`crew.kickoff()`].join("\n");
+  createCrewKickOff(): string {
+    return [`result = crew.kickoff()`, `print("######################")`, `print(result)`].join(
+      "\n"
+    );
   }
 
   createManyAgents(): string {
@@ -195,9 +209,11 @@ export default class CrewAiExporter implements BaseExporter {
     this.loadEdgesFromGraph();
     const code = [
       this.createImports(),
+      this.createLlmCredential(),
       this.createManyAgents(),
       this.createManyTasks(),
       this.createCrew(),
+      this.createCrewKickOff(),
     ].join("\n");
     return code;
   }
