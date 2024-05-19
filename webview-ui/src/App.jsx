@@ -5,6 +5,7 @@ import CrewAiExporter from "./exporters/CrewAiExporter";
 
 import { useStore } from "./store";
 import Agent from "./nodes/Agent";
+import Task from "./nodes/Task";
 
 import { vscode } from "./utilities/vscode";
 import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
@@ -18,6 +19,7 @@ const selector = (store) => ({
   onEdgesChange: store.onEdgesChange,
   addEdge: store.addEdge,
   addAgent: () => store.createNode("agent"),
+  addTask: () => store.createNode("task"),
   exportFlow: () => {
     console.log(new CrewAiExporter(store.exportFlow()).export());
   },
@@ -25,6 +27,7 @@ const selector = (store) => ({
 
 const nodeTypes = {
   agent: Agent,
+  task: Task
 };
 
 export default function App() {
@@ -50,6 +53,7 @@ export default function App() {
           fitView>
           <Panel className="space-x-4" position="top-right">
             <VSCodeButton onClick={store.addAgent}>Add Agent</VSCodeButton>
+            <VSCodeButton onClick={store.addTask}>Add Task</VSCodeButton>
             <VSCodeButton onClick={exportFlow}>Save Workflow</VSCodeButton>
           </Panel>
           <Background />

@@ -1,6 +1,6 @@
-import { applyNodeChanges, applyEdgeChanges } from 'reactflow';
-import { nanoid } from 'nanoid';
-import { createWithEqualityFn } from 'zustand/traditional';
+import { applyNodeChanges, applyEdgeChanges } from "reactflow";
+import { nanoid } from "nanoid";
+import { createWithEqualityFn } from "zustand/traditional";
 
 export const useStore = createWithEqualityFn((set, get) => ({
   nodes: [],
@@ -9,7 +9,7 @@ export const useStore = createWithEqualityFn((set, get) => ({
   exportFlow() {
     const flow = {
       nodes: get().nodes,
-      edges: get().edges
+      edges: get().edges,
     };
 
     return flow;
@@ -17,11 +17,9 @@ export const useStore = createWithEqualityFn((set, get) => ({
 
   updateNode(id, data) {
     set({
-      nodes: get().nodes.map(node =>
-        node.id === id
-          ? { ...node, data: { ...node.data, ...data } }
-          : node
-      )
+      nodes: get().nodes.map((node) =>
+        node.id === id ? { ...node, data: { ...node.data, ...data } } : node
+      ),
     });
   },
 
@@ -48,13 +46,21 @@ export const useStore = createWithEqualityFn((set, get) => ({
     const id = nanoid();
 
     switch (type) {
-      case 'agent': {
-        const data = {};
+      case "agent": {
+        const data = {goal: "", role: "", llm: "gpt-3.5-turbo"};
+        const position = { x: 0, y: 0 };
+
+        set({ nodes: [...get().nodes, { id, type, data, position }] });
+        break;
+      }
+
+      case "task": {
+        const data = {outcome: "", description: ""};
         const position = { x: 0, y: 0 };
 
         set({ nodes: [...get().nodes, { id, type, data, position }] });
         break;
       }
     }
-  }
+  },
 }));

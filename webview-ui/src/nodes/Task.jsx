@@ -1,5 +1,5 @@
 import React from "react";
-import { Handle } from "reactflow";
+import { Handle, NodeResizer } from "reactflow";
 import { shallow } from "zustand/shallow";
 import { useStore } from "../store";
 
@@ -13,25 +13,22 @@ export default function Task({ id, data }) {
 
   return (
     <div className="rounded-md bg-white shadow-xl">
+      <NodeResizer />
       <p className="rounded-t-md px-2 py-1 bg-blue-500 text-white text-sm">Task</p>
 
       <label className="flex flex-col px-2 py-1">
-        <span className="text-xs font-bold mb-2">Role</span>
-        <input
-          className="border rounded p-1 focus:outline-none focus:ring focus:border-blue-500"
-          type="text"
+        <span className="text-xs font-bold mb-2">Description</span>
+        <textarea
+          className="nodrag border text-xs rounded focus:outline-none focus:ring focus:border-blue-500"
           value={data.description}
           onChange={setDescription}
         />
       </label>
 
       <label className="flex flex-col px-2 pt-1 pb-4">
-        <span className="text-xs font-bold mb-2">Goal</span>
+        <span className="text-xs font-bold mb-2">Outcome</span>
         <textarea
-          className={
-            "nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"
-          }
-          type="text"
+          className="nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"
           value={data.goal}
           onChange={setOutcome}
         />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Handle } from 'reactflow';
+import { Handle, NodeResizer } from 'reactflow';
 import { shallow } from 'zustand/shallow';
 import { useStore } from '../store';
 
@@ -14,6 +14,7 @@ export default function Agent({ id, data }) {
 
   return (
     <div className="rounded-md bg-white shadow-xl">
+      <NodeResizer />
       <p className="rounded-t-md px-2 py-1 bg-pink-500 text-white text-sm">Agent</p>
 
       <label className="flex flex-col px-2 py-1">
@@ -29,7 +30,6 @@ export default function Agent({ id, data }) {
         <span className="text-xs font-bold mb-2">Goal</span>
         <textarea
           className={"nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"}
-          type="text"
           value={data.goal}
           onChange={setGoal} />
       </label>
