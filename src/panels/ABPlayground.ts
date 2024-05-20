@@ -61,6 +61,8 @@ export class ABPlayground {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
+          // Don't clear webview while switching tab
+          retainContextWhenHidden: true,
           // Restrict the webview to only load resources from the `out` and `webview-ui/build` directories
           localResourceRoots: [
             Uri.joinPath(extensionUri, "out"),

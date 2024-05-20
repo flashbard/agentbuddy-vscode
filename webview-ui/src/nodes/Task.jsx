@@ -29,7 +29,7 @@ export default function Task({ id, data }) {
         <span className="text-xs font-bold mb-2">Outcome</span>
         <textarea
           className="nodrag border rounded text-xs focus:outline-none focus:ring focus:border-blue-500"
-          value={data.goal}
+          value={data.outcome}
           onChange={setOutcome}
         />
       </label>
