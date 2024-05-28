@@ -4,8 +4,8 @@ import { shallow } from "zustand/shallow";
 import { useStore } from "../store";
 
 const selector = (id) => (store) => ({
-  setDescription: (e) => store.updateNode(id, { description: e.target.description }),
-  setOutcome: (e) => store.updateNode(id, { outcome: e.target.outcome }),
+  setDescription: (e) => store.updateNode(id, { description: e.target.value }),
+  setOutcome: (e) => store.updateNode(id, { outcome: e.target.value }),
 });
 
 export default function Task({ id, data }) {
