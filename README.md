@@ -1,69 +1,73 @@
 # AgentBuddy
 
-Your friendly neighbourhood agentic workflow builder!
+> A visual, drag-and-drop agentic workflow builder — packaged as a VS Code extension.
 
-## Motivation
+![Workflow Builder](assets/workflowbuilder.png)
 
-LLM based Agentic Workflows are touted to be the highlight of the year; they could totally disrupt the industry! However, to make it easy for people to onboard into the topic, we need to offer them easy tools to experiment and feel the "wow" factor for themselves. This project aims to help people build what agentic workflows are in a simple way.
+Build multi-agent AI workflows without writing boilerplate. Connect agents, define their personas and tasks visually, then export and run the generated [crewAI](https://github.com/joaomdmoura/crewAI) project directly from VS Code.
 
-## What it does
+Built at [hackOMSCS 2024](https://devpost.com/software/agentbuddy) 🏆
 
-It's a visual GUI where users can build agentic workflows using simple drag and drop of blocks (ie. block based builder). They can create graphs with multiple agents talking to each other, or working in isolation, define personas for agents and assign tasks. Created agentic workflows are then exported into code, which can be executed. The app is packaged as VS Code extension, making it easy for developers to consume. The overall idea is to take a low-code/no-code approach to agentic workflow building.
+---
 
-![alt text](assets/workflowbuilder.png)
+## Features
 
-## How it works
+- 🧩 **Block-based builder** — drag, drop, and connect agent nodes on a visual canvas
+- 🤖 **Multi-agent graphs** — configure agents to work in parallel, in sequence, or hierarchically
+- 📝 **Persona & task editor** — define each agent's role, goal, and backstory inline
+- ⚡ **One-click export** — compiles the graph to a runnable crewAI Python project
+- 🖥️ **Runs in VS Code** — no external app needed; executes in an integrated terminal
 
-React + Vite + React Flow with Typescript for the GUI, and packaged it as a VS Code extension.
-The graph that you build with the editor gets complied into a [crewAI project](https://github.com/joaomdmoura/crewAI).
+## Tech Stack
 
-The extension then executes the compiled crewAI application locally in a terminal and shows the result.
+- **UI**: React + Vite + [React Flow](https://reactflow.dev/) (TypeScript)
+- **Extension host**: VS Code Extension API
+- **Output**: [crewAI](https://github.com/joaomdmoura/crewAI) Python project
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js
+- VS Code
+- Python + crewAI (`pip install crewai`)
 
 ### Setup
 
 ```bash
-# Clone the repo
 git clone https://github.com/flashbard/agentbuddy-vscode
-
-# Navigate into project
 cd agentbuddy-vscode
 
-# Install dependencies for both the extension and webview UI source code
+# Install dependencies for both the extension and webview UI
 npm run install:all
 
-# Build webview UI source code
+# Build the webview UI
 npm run build:webview
 
-# Open the project in VS Code
+# Open in VS Code
 code .
 ```
 
-### Execution
+### Run
 
 ```bash
-# Run the extension
 npm run watch
-
-# Run the webview project alone
-npm run start:webview
-
 ```
 
-In VS Code, open the command pallete (F1 or ctrl + shift + p), run the command `AgentBuddy: Playground`.
+In VS Code, open the Command Palette (`Ctrl+Shift+P`) and run:
 
-### Packaging the VS Code Extension
+```
+AgentBuddy: Playground
+```
+
+### Package as VSIX
 
 ```bash
-# Setup vsce locally
 npm install -g @vscode/vsce
-
-# Package the extension
 vsce package
-
-# (Optional) Install the generated VSIX file
-code --install-extension <GENERATED-VSIX-FILE>
+code --install-extension agentbuddy-vscode-*.vsix
 ```
 
-Made with ❤️ by Sampath at [hackOMSCS 2024](https://devpost.com/software/agentbuddy)
+## License
+
+MIT
